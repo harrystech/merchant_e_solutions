@@ -20,20 +20,6 @@ describe MerchantESolutions::Request do
     end
   end
 
-  describe ".get_report" do
-    let(:report) { double(:report, request_params: {id: 17})}
-
-    it "creates a new instance of request" do
-      MerchantESolutions::Request.get_report(report)
-    end
-
-    it "the request params into the new request" do
-      MerchantESolutions::Request.should_receive(:new).with(report.request_params)
-
-      MerchantESolutions::Request.get_report(report)
-    end
-  end
-
   describe "#uri" do
     subject { MerchantESolutions::Request.new(options).uri.to_s }
     let(:options) { {} }

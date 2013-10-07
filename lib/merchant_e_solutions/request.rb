@@ -7,10 +7,6 @@ module MerchantESolutions
 
     attr_reader :body
 
-    def self.get_report(report)
-      new(report.request_params)
-    end
-
     def initialize(options = {})
       @options = options
       make_request
