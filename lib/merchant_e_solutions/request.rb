@@ -2,30 +2,34 @@ require 'uri'
 
 module MerchantESolutions
   class Request
-    BASE_URL = "https://www.merchante-solutions.com/jsp/reports/report_api.jsp?"
+    BASE_URL = "https://www.merchante-solutions.com/jsp/reports/report_api.jsp"
 
-    attr_accessor :report
+    def self.get_report(report)
+      new({})
+    end
 
-    def initialize(report)
-      self.report = report
+    def initialize(options = {})
+      self.options = options
     end
 
     def url
-      BASE_URL + params
+      BASE_URL + '?' + param_string
     end
 
 
     private
 
-    def params
-      URI.encode_www_form(base_params)
+    attr_accessor :options
+
+    def param_string
+      URI.encode_www_form(base_params.merge(options))
     end
 
     def base_params
       {
-        dsReportId: report.type_id,
         userId: Configuration.user_id,
-        userPass: Configuration.password
+        userPass: Configuration.password,
+        reportType: 0
       }
     end
   end
