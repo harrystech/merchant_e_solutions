@@ -18,7 +18,15 @@ module MerchantESolutions
     private
 
     def params
-      URI.encode_www_form(dsReportId: report.type_id)
+      URI.encode_www_form(base_params)
+    end
+
+    def base_params
+      {
+        dsReportId: report.type_id,
+        userId: Configuration.user_id,
+        userPass: Configuration.password
+      }
     end
   end
 end
