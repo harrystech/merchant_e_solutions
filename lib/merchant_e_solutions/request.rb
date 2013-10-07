@@ -5,11 +5,11 @@ module MerchantESolutions
     BASE_URL = "https://www.merchante-solutions.com/jsp/reports/report_api.jsp"
 
     def self.get_report(report)
-      new({})
+      new(report.request_params)
     end
 
     def initialize(options = {})
-      self.options = options
+      @options = options
     end
 
     def url
@@ -19,7 +19,7 @@ module MerchantESolutions
 
     private
 
-    attr_accessor :options
+    attr_reader :options
 
     def param_string
       URI.encode_www_form(base_params.merge(options))
