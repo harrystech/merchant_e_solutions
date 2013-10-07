@@ -1,5 +1,8 @@
-require "merchant_e_solutions/version"
+require 'merchant_e_solutions/request'
+require 'merchant_e_solutions/settlement_report'
 
 module MerchantESolutions
-  # Your code goes here...
+  def self.settlement_report(options = {})
+    SettlementReport.new(options)
+  end
 end
