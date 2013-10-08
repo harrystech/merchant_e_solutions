@@ -1,0 +1,8 @@
+"Merchant Id","DBA Name","Term Num","Batch Num","Batch Date","Tran Date","Card Type","Card Number","Reference","Purchase Id","Auth Code","Entry Mode","Tran Amount","Trident Tran Id","Client Ref Num"
+42,"Hamazon","1",220,10/07/2013,10/06/2013,"AM","000000xxxxxx0000","'0000000","AAAAAAAAAAA0","100000","KEYED",7.09,null,
+42,"Hamazon","1",220,10/07/2013,10/06/2013,"VS","000000xxxxxx0001","'0000001","AAAAAAAAAAA1","100001","KEYED",10.0,null,
+42,"Hamazon","1",220,10/07/2013,10/06/2013,"VD","000000xxxxxx0002","'0000002","AAAAAAAAAAA2","100002","KEYED",50.0,null,
+42,"Hamazon","1",220,10/07/2013,10/06/2013,"DS","000000xxxxxx0003","'0000003","AAAAAAAAAAA3","100003","KEYED",5.0,null,
+42,"Hamazon","1",220,10/07/2013,10/06/2013,"MC","000000xxxxxx0004","'0000004","AAAAAAAAAAA4","100004","KEYED",2.0,null,
+42,"Hamazon","1",220,10/07/2013,10/06/2013,"MB","000000xxxxxx0005","'0000005","AAAAAAAAAAA5","100005","KEYED",15.0,null,
+42,"Hamazon","1",220,10/07/2013,10/06/2013,"MD","000000xxxxxx0006","'0000006","AAAAAAAAAAA6","100006","KEYED",22.33,null,
