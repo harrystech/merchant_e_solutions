@@ -1,5 +1,5 @@
 module MerchantESolutions
-  class SettlementRecord
+  class SettlementSummaryRecord
 
     attr_reader :organization_id, :organization_name, :card_type,
       :sales_count, :sales_amount, :credits_count, :credits_amount, :net_amount

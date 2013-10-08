@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe MerchantESolutions::SettlementReport do
+describe MerchantESolutions::SettlementSummaryReport do
   before { stub_net_http_requests }
 
   describe "#initialize" do
@@ -11,22 +11,22 @@ describe MerchantESolutions::SettlementReport do
     it "gets a new report from the MerchantESolutions API" do
       MerchantESolutions::Request.should_receive(:new).and_return(request)
 
-      MerchantESolutions::SettlementReport.new
+      MerchantESolutions::SettlementSummaryReport.new
     end
 
     it "parses the body of the request as a CSV" do
-      report = MerchantESolutions::SettlementReport.new
+      report = MerchantESolutions::SettlementSummaryReport.new
 
       report.records.size.should be > 0
 
       report.records.each do |record|
-        record.should be_a MerchantESolutions::SettlementRecord
+        record.should be_a MerchantESolutions::SettlementSummaryRecord
       end
     end
   end
 
   describe "#request_params" do
-    let(:request_params) { MerchantESolutions::SettlementReport.new(options).request_params }
+    let(:request_params) { MerchantESolutions::SettlementSummaryReport.new(options).request_params }
     let(:options) { Hash.new }
 
     it "knows its dsReportId" do

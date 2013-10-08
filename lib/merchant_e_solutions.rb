@@ -1,9 +1,9 @@
 require 'merchant_e_solutions/configuration'
 require 'merchant_e_solutions/request'
-require 'merchant_e_solutions/settlement_record'
-require 'merchant_e_solutions/settlement_report'
 require 'merchant_e_solutions/settlement_detail_report'
 require 'merchant_e_solutions/settlement_detail_record'
+require 'merchant_e_solutions/settlement_summary_record'
+require 'merchant_e_solutions/settlement_summary_report'
 
 module MerchantESolutions
 
@@ -12,8 +12,8 @@ module MerchantESolutions
       yield(Configuration)
     end
 
-    def settlement_report(options = {})
-      SettlementReport.new(options)
+    def settlement_summary_report(options = {})
+      SettlementSummaryReport.new(options)
     end
 
     def settlement_detail_report(options = {})

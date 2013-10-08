@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe MerchantESolutions::SettlementRecord do
+describe MerchantESolutions::SettlementSummaryRecord do
   describe "#initialize" do
-    subject { MerchantESolutions::SettlementRecord.new(csv_row) }
+    subject { MerchantESolutions::SettlementSummaryRecord.new(csv_row) }
     # "Org Id","Org Name","Card Type","Sales Cnt","Sales Amt","Credits Cnt","Credits Amt","Net Amt"
     let(:csv_row) { ['42', "Hamazon", "Visa", 1337, 1000000000.0, 1, 0.01, 999999999.99] }
 

@@ -1,7 +1,7 @@
 require 'csv'
 
 module MerchantESolutions
-  class SettlementReport
+  class SettlementSummaryReport
     REPORT_ID = 2
     REPORT_TYPE = 0
 
@@ -28,7 +28,7 @@ module MerchantESolutions
     def parse_records(request)
       @records = []
       CSV.parse(request) do |csv|
-        records << SettlementRecord.new(csv)
+        records << SettlementSummaryRecord.new(csv)
       end
     end
   end

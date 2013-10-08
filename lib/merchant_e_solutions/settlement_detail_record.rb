@@ -10,8 +10,8 @@ module MerchantESolutions
       @organization_name = row[1]
       @term_number = row[2]
       @batch_number = row[3]
-      @batch_date = parse_date(row[4]) if row[4]
-      @transaction_date = parse_date(row[5]) if row[5]
+      @batch_date = parse_date(row[4])
+      @transaction_date = parse_date(row[5])
       @card_type = parse_card_type(row[6])
       @card_number = row[7]
       @reference_number = row[8]
@@ -27,7 +27,7 @@ module MerchantESolutions
     private
 
     def parse_date(date)
-      Date.strptime(date, "%m/%d/%Y")
+      Date.strptime(date, "%m/%d/%Y") if date
     end
 
     def parse_card_type(code)
