@@ -1,4 +1,5 @@
 require 'merchant_e_solutions/configuration'
+require 'merchant_e_solutions/report'
 require 'merchant_e_solutions/request'
 require 'merchant_e_solutions/settlement_detail_report'
 require 'merchant_e_solutions/settlement_detail_record'

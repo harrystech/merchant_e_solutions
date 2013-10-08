@@ -1,35 +1,21 @@
 require 'csv'
 
 module MerchantESolutions
-  class SettlementDetailReport
-    REPORT_ID = 2
-    REPORT_TYPE = 1
-
-    attr_reader :request, :records
-
-    def initialize(options = {})
-      self.options = options
-      @request = Request.new(request_params).body
-      parse_records(request)
-    end
-
-    def request_params
-      {
-        dsReportId: REPORT_ID,
-        reportType: REPORT_TYPE
-      }.merge(options)
-    end
+  class SettlementDetailReport < Report
 
 
     private
 
-    attr_accessor :options
+    def report_id
+      2
+    end
 
-    def parse_records(request)
-      @records = []
-      CSV.parse(request, headers: true) do |csv|
-        records << SettlementDetailRecord.new(csv)
-      end
+    def report_type
+      1
+    end
+
+    def record_class
+      SettlementDetailRecord
     end
   end
 end
