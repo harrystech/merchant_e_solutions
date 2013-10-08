@@ -4,26 +4,40 @@ describe MerchantESolutions::SettlementReport do
   before { stub_net_http_requests }
 
   describe "#initialize" do
+    let(:request) { double(:request, body: request_fixture('settlement_summary')) }
+
+    before { MerchantESolutions::Request.stub(:new).and_return(request) }
+
     it "gets a new report from the MerchantESolutions API" do
-      MerchantESolutions::Request.should_receive(:new).and_return(double.as_null_object)
+      MerchantESolutions::Request.should_receive(:new).and_return(request)
 
       MerchantESolutions::SettlementReport.new
     end
 
-    describe "#request_params" do
-      let(:request_params) { MerchantESolutions::SettlementReport.new(options).request_params }
-      let(:options) { Hash.new }
+    it "parses the body of the request as a CSV" do
+      report = MerchantESolutions::SettlementReport.new
 
-      it "knows its dsReportId" do
-        request_params[:dsReportId].should == 2
+      report.records.size.should be > 0
+
+      report.records.each do |record|
+        record.should be_a MerchantESolutions::SettlementRecord
       end
+    end
+  end
 
-      context "when options are passed in" do
-        let(:options) { {test: 'params'} }
+  describe "#request_params" do
+    let(:request_params) { MerchantESolutions::SettlementReport.new(options).request_params }
+    let(:options) { Hash.new }
 
-        it "merges in the options" do
-          request_params[:test].should == 'params'
-        end
+    it "knows its dsReportId" do
+      request_params[:dsReportId].should == 2
+    end
+
+    context "when options are passed in" do
+      let(:options) { {test: 'params'} }
+
+      it "merges in the options" do
+        request_params[:test].should == 'params'
       end
     end
   end

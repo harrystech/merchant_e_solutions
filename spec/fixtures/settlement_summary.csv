@@ -1,0 +1,9 @@
+"Org Id","Org Name","Card Type","Sales Cnt","Sales Amt","Credits Cnt","Credits Amt","Net Amt"
+42,"Hamazon",Visa,258,654.45,0,0.0,654.45
+42,"Hamazon",Mastercard,85,256.77,1,-25.0,231.77
+42,"Hamazon",Debit/EBT,0,0.0,0,0.0,0.0
+42,"Hamazon",Bill Me Later,0,0.0,0,0.0,0.0
+42,"Hamazon",American Express,97,12345.98,0,0.0,12345.98
+42,"Hamazon",Discover,18,4875.25,0,0.0,4875.25
+42,"Hamazon",Diners Club,0,0.0,0,0.0,0.0
+42,"Hamazon",JCB,0,0.0,0,0.0,0.0

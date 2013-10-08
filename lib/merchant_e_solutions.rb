@@ -1,6 +1,7 @@
 require 'merchant_e_solutions/configuration'
 require 'merchant_e_solutions/request'
 require 'merchant_e_solutions/settlement_report'
+require 'merchant_e_solutions/settlement_record'
 
 module MerchantESolutions
 

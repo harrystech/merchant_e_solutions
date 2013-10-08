@@ -24,3 +24,7 @@ end
 def stub_net_http_requests
   Net::HTTP.any_instance.stub(request: double(:request, body: "Nice body!"))
 end
+
+def request_fixture(file_name)
+  File.read("spec/fixtures/#{file_name}.csv")
+end
