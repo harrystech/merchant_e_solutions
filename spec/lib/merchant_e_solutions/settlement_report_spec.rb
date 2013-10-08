@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe MerchantESolutions::SettlementReport do
+  before { stub_net_http_requests }
+
   describe "#initialize" do
     it "gets a new report from the MerchantESolutions API" do
       MerchantESolutions::Request.should_receive(:new).and_return(double.as_null_object)

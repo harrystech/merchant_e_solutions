@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe MerchantESolutions::Request do
+  before { stub_net_http_requests }
+
   describe "#initialize" do
     let(:http_request) { double(:request, body: "Nice Body") }
     let(:http) { double(:http, "use_ssl=" => true, request: double.as_null_object) }

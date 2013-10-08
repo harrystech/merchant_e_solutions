@@ -9,7 +9,7 @@ module MerchantESolutions
 
     def initialize(options = {})
       @options = options
-      make_request
+      get_request
     end
 
     def uri
@@ -20,6 +20,10 @@ module MerchantESolutions
     private
 
     attr_reader :options
+
+    def get_request
+      @body = http.request(Net::HTTP::Get.new(uri.request_uri)).body
+    end
 
     def param_string
       URI.encode_www_form(base_params.merge(options))
@@ -37,10 +41,6 @@ module MerchantESolutions
       @http ||= Net::HTTP.new(uri.host, uri.port).tap do |http|
         http.use_ssl = true
       end
-    end
-
-    def make_request
-      @body = http.request(Net::HTTP::Get.new(uri.request_uri)).body
     end
   end
 end

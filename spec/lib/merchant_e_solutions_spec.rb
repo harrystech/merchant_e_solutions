@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe MerchantESolutions do
+  before { stub_net_http_requests }
+
   describe ".settlement_report" do
     it "returns an Instance of MerchantESolution::SettlementReport" do
       MerchantESolutions.settlement_report.should be_a MerchantESolutions::SettlementReport
