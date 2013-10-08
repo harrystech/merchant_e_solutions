@@ -29,7 +29,6 @@ describe MerchantESolutions::Request do
     it { should include "https://www.merchante-solutions.com/jsp/reports/report_api.jsp?" }
     it { should include "userId=#{MerchantESolutions::Configuration.user_id}" }
     it { should include "userPass=#{MerchantESolutions::Configuration.password}" }
-    it { should include "reportType=0" }
 
     context "when options are passed into" do
       let(:options) { {dsReportId: 17} }

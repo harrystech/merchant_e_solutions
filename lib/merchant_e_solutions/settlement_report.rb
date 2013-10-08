@@ -2,7 +2,8 @@ require 'csv'
 
 module MerchantESolutions
   class SettlementReport
-    TYPE_ID = 2
+    REPORT_ID = 2
+    REPORT_TYPE = 0
 
     attr_reader :request, :records
 
@@ -14,9 +15,11 @@ module MerchantESolutions
 
     def request_params
       {
-        dsReportId: TYPE_ID
+        dsReportId: REPORT_ID,
+        reportType: REPORT_TYPE
       }.merge(options)
     end
+
 
     private
 

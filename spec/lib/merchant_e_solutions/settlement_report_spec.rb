@@ -33,6 +33,10 @@ describe MerchantESolutions::SettlementReport do
       request_params[:dsReportId].should == 2
     end
 
+    it "knows its reportType" do
+      request_params[:reportType].should == 0
+    end
+
     context "when options are passed in" do
       let(:options) { {test: 'params'} }
 

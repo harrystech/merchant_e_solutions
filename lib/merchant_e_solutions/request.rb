@@ -33,7 +33,6 @@ module MerchantESolutions
       {
         userId: Configuration.user_id,
         userPass: Configuration.password,
-        reportType: 0
       }
     end
 
