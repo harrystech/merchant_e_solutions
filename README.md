@@ -1,6 +1,6 @@
 # MerchantESolutions
 
-TODO: Write a gem description
+A gem to more easily interact with the Merchant e-Solutions API[(v2.3)](http://resources.merchante-solutions.com/download/attachments/1411006/MeS+Reporting+API+ver2.3+March+2013.pdf).
 
 ## Installation
 
@@ -17,8 +17,34 @@ Or install it yourself as:
     $ gem install merchant_e_solutions
 
 ## Usage
+Request a report:
+```ruby
+report = MerchantESolutions.settlement_detail_report
+```
+Each report has records which hold all the data passed back and some convience methods:
+```
+record = report.records.first
 
-TODO: Write usage instructions here
+record.card_code        # => "MD"
+record.credit_company   # => "MasterCard"
+record.credit_type      # => "Debit"
+```
+
+## Configuration
+
+Add your user id and password in an initializer:
+```ruby
+MerchantESolutions.configure do |config|
+  config.user_id = "yourUserID"
+  config.password = "yourPassword"
+end
+```
+or as environment variables:
+```bash
+echo $MERCHANT_E_SOLUTIONS_USER_ID  # yourUserID
+echo $MERCHANT_E_SOLUTIONS_PASSWORD # yourPassword
+```
+
 
 ## Contributing
 
