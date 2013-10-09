@@ -22,7 +22,7 @@ describe MerchantESolutions::SettlementDetailRecord do
       subject.transaction_date.year.should == 2013
     end
     its("transaction_date.month") { should == 10 }
-    its(:card_type) { should == "American Express" }
+    its(:card_code) { should == "AM" }
     its(:card_number) { should == "000000xxxxxx1234" }
     its(:reference_number) { "'0000213"}
     its(:purchase_id) { "AAAAAAAAAAA0" }
@@ -33,36 +33,52 @@ describe MerchantESolutions::SettlementDetailRecord do
     its(:client_reference_number) { should == "clientRefNumber" }
   end
 
-  describe "#card_type" do
+  describe "credit cards" do
     subject { MerchantESolutions::SettlementDetailRecord.new([nil, nil, nil, nil, nil, nil, card_code]) }
 
     context "when the code is AM" do
       let(:card_code) { "AM" }
-      its(:card_type) { should == "American Express" }
-    end
-    context "when the code is VS" do
-      let(:card_code) { "VS" }
-      its(:card_type) { should == "Visa" }
-    end
-    context "when the code is VD" do
-      let(:card_code) { "VD" }
-      its(:card_type) { should == "Visa" }
-    end
-    context "when the code is MC" do
-      let(:card_code) { "MC" }
-      its(:card_type) { should == "MasterCard" }
-    end
-    context "when the code is MD" do
-      let(:card_code) { "MD" }
-      its(:card_type) { should == "MasterCard" }
+      its(:credit_company) { should == "American Express" }
     end
     context "when the code is DS" do
       let(:card_code) { "DS" }
-      its(:card_type) { should == "Discover" }
+      its(:credit_company) { should == "Discover" }
+      its(:credit_type) { should == "Credit" }
+    end
+    context "when the code is MB" do
+      let(:card_code) { "MB" }
+      its(:credit_company) { should == "MasterCard" }
+      its(:credit_type) { should == "Business" }
+    end
+    context "when the code is MC" do
+      let(:card_code) { "MC" }
+      its(:credit_company) { should == "MasterCard" }
+      its(:credit_type) { should == "Credit" }
+    end
+    context "when the code is MD" do
+      let(:card_code) { "MD" }
+      its(:credit_company) { should == "MasterCard" }
+      its(:credit_type) { should == "Debit" }
+    end
+    context "when the code is VB" do
+      let(:card_code) { "VB" }
+      its(:credit_company) { should == "Visa" }
+      its(:credit_type) { should == "Business" }
+    end
+    context "when the code is VD" do
+      let(:card_code) { "VD" }
+      its(:credit_company) { should == "Visa" }
+      its(:credit_type) { should == "Debit" }
+    end
+    context "when the code is VS" do
+      let(:card_code) { "VS" }
+      its(:credit_company) { should == "Visa" }
+      its(:credit_type) { should == "Credit" }
     end
     context "when the code is unknown" do
       let(:card_code) { "something you've never seen" }
-      its(:card_type) { should == card_code }
+      its(:credit_company) { should == card_code }
+      its(:credit_type) { should be_nil }
     end
   end
 end
