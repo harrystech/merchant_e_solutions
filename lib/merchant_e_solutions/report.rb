@@ -1,17 +1,20 @@
 module MerchantESolutions
   class Report
-    attr_reader :request, :records
+    attr_reader :records, :request
 
     def initialize(params = {})
       self.options = params
-      @request = Request.new(request_params).body
-      parse_records(request)
+      @request = Request.new(request_params)
+      parse_records(request.body)
     end
 
     def request_params
       {
         dsReportId: report_id,
-        reportType: report_type
+        reportType: report_type,
+        includeTridentTranId: true,
+        includePurchaseId: true,
+        includeClientRefNum: true
       }.merge(report_specific_params)
     end
 

@@ -1,7 +1,7 @@
 module MerchantESolutions
   class SettlementDetailRecord
 
-    attr_accessor :organization_id, :organization_name, :term_number, :batch_number, :batch_date,
+    attr_reader :organization_id, :organization_name, :term_number, :batch_number, :batch_date,
       :transaction_date, :card_code, :card_number, :reference_number, :purchase_id, :auth_code,
       :entry_mode, :transaction_amount, :trident_transaction_id, :client_reference_number
 
