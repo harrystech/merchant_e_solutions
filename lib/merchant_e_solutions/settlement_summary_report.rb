@@ -15,7 +15,7 @@ module MerchantESolutions
     end
 
     def record_class
-      SettlementSummaryRecord
+      SummaryRecord
     end
   end
 end

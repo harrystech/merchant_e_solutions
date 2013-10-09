@@ -15,7 +15,7 @@ module MerchantESolutions
     end
 
     def record_class
-      BatchSummaryRecord
+      SummaryRecord
     end
   end
 end
