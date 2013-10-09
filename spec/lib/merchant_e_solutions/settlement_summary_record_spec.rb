@@ -8,7 +8,7 @@ describe MerchantESolutions::SettlementSummaryRecord do
 
     its(:organization_id) { should == '42' }
     its(:organization_name) { should == "Hamazon" }
-    its(:card_type) { should == "Visa" }
+    its(:credit_company) { should == "Visa" }
     its(:sales_count) { should == 1337 }
     its(:sales_amount) { should == 1000000000.0 }
     its(:credits_count) { should == 1 }
