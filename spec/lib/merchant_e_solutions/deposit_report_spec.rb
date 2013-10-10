@@ -4,7 +4,7 @@ describe MerchantESolutions::DepositReport do
   before { stub_net_http_requests }
 
   describe "#initialize" do
-    let(:request) { double(:request, body: request_fixture('detail_report')) }
+    let(:request) { double(:request, body: request_fixture('deposit_report')) }
     before { MerchantESolutions::Request.stub(:new).and_return(request) }
 
     it "parses the body of the request as a CSV" do
