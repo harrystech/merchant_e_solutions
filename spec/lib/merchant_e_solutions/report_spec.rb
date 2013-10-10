@@ -2,7 +2,9 @@ require 'spec_helper'
 
 describe MerchantESolutions::Report do
 
-  class TestRecord; end
+  class TestRecord
+    def initialize(row);end
+  end
 
   class TestSubReport < MerchantESolutions::Report
     def report_id; 0; end
@@ -11,6 +13,16 @@ describe MerchantESolutions::Report do
   end
 
   before { stub_net_http_requests }
+
+  describe "#initialize" do
+    let(:request) { double(:request, body: request_fixture('settlement_detail')) }
+
+    it "gets a new report from the MerchantESolutions API" do
+      MerchantESolutions::Request.should_receive(:new).and_return(request)
+
+      TestSubReport.new
+    end
+  end
 
   describe "#request_params" do
     let(:report) { TestSubReport.new(testing: "tested", includeClientRefNum: false) }

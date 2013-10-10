@@ -8,12 +8,6 @@ describe MerchantESolutions::BatchSummaryReport do
 
     before { MerchantESolutions::Request.stub(:new).and_return(request) }
 
-    it "gets a new report from the MerchantESolutions API" do
-      MerchantESolutions::Request.should_receive(:new).and_return(request)
-
-      MerchantESolutions::BatchSummaryReport.new
-    end
-
     it "parses the body of the request as a CSV" do
       report = MerchantESolutions::BatchSummaryReport.new
 
