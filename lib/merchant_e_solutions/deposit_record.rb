@@ -1,5 +1,7 @@
+require 'merchant_e_solutions/record'
+
 module MerchantESolutions
-  class DepositRecord
+  class DepositRecord < Record
 
     attr_reader :organization_id, :organization_name,
       :date, :type, :amount, :reference_id
@@ -11,13 +13,6 @@ module MerchantESolutions
       @type = row[3]
       @amount = row[4]
       @reference_id = row[5]
-    end
-
-
-    private
-
-    def parse_date(date)
-      Date.strptime(date, "%m/%d/%Y") if date
     end
   end
 end

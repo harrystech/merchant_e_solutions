@@ -1,4 +1,4 @@
-require 'csv'
+require 'merchant_e_solutions/detail_record'
 
 module MerchantESolutions
   class SettlementDetailReport < Report

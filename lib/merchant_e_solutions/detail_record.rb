@@ -1,5 +1,7 @@
+require 'merchant_e_solutions/record'
+
 module MerchantESolutions
-  class DetailRecord
+  class DetailRecord < Record
 
     attr_reader :organization_id, :organization_name, :term_number, :batch_number, :batch_date,
       :transaction_date, :card_code, :card_number, :reference_number, :purchase_id, :auth_code,
@@ -44,13 +46,6 @@ module MerchantESolutions
       elsif ["MB", "VB"].include? card_code
         "Business"
       end
-    end
-
-
-    private
-
-    def parse_date(date)
-      Date.strptime(date, "%m/%d/%Y") if date
     end
   end
 end

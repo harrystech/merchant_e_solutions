@@ -1,5 +1,7 @@
+require 'merchant_e_solutions/record'
+
 module MerchantESolutions
-  class SummaryRecord
+  class SummaryRecord < Record
 
     attr_reader :organization_id, :organization_name, :credit_company,
       :sales_count, :sales_amount, :credits_count, :credits_amount, :net_amount
