@@ -5,7 +5,7 @@ module MerchantESolutions
     attr_reader :records, :request
 
     def initialize(params = {})
-      self.options = params
+      self.options = parse_params(params)
       @request = Request.new(request_params)
       parse_records(request.body)
     end
@@ -45,6 +45,24 @@ module MerchantESolutions
       @records = []
       CSV.parse(request, headers: true) do |csv|
         records << record_class.new(csv)
+      end
+    end
+
+    def parse_params(params)
+      parse_out_date(params, "begin")
+      parse_out_date(params, "end")
+
+      params
+    end
+
+    def parse_out_date(params, type)
+      key = "#{type}_date"
+      if date = params.delete(key) || params.delete(key.to_sym)
+        params.merge!({
+          "#{type}Date.day" => date.day,
+          "#{type}Date.month" => (date.month - 1),
+          "#{type}Date.year" => date.year,
+        })
       end
     end
   end

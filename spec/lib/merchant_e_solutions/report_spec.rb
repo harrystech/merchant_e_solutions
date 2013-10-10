@@ -22,6 +22,21 @@ describe MerchantESolutions::Report do
 
       TestSubReport.new
     end
+
+    it "parses out a date into usable request params for start and end dates" do
+      begin_date = Date.parse('10/11/2012')
+      end_date = Date.parse('11/12/2013')
+
+      report = TestSubReport.new(begin_date: begin_date, end_date: end_date)
+
+      report.request_params["beginDate.day"].should == begin_date.day
+      report.request_params["beginDate.month"].should == (begin_date.month - 1)
+      report.request_params["beginDate.year"].should == begin_date.year
+
+      report.request_params["endDate.day"].should == end_date.day
+      report.request_params["endDate.month"].should == (end_date.month - 1)
+      report.request_params["endDate.year"].should == end_date.year
+    end
   end
 
   describe "#request_params" do
