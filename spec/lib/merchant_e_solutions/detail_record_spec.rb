@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe MerchantESolutions::BatchDetailRecord do
+describe MerchantESolutions::DetailRecord do
   describe "#initialize" do
-    subject { MerchantESolutions::BatchDetailRecord.new(csv_row) }
+    subject { MerchantESolutions::DetailRecord.new(csv_row) }
 
     # "Merchant Id","DBA Name","Term Num","Batch Num","Batch Date","Tran Date","Card Type","Card Number","Reference","Purchase Id","Auth Code","Entry Mode","Tran Amount","Trident Tran Id","Client Ref Num"
     let(:csv_row) { [42, "Hamazon", 1, 220, "10/07/2013", "10/06/2013", "AM", "000000xxxxxx1234", "'0000213", "AAAAAAAAAAA0", "100000", "KEYED", 7.09, "T.T.ID", "clientRefNumber"] }
@@ -34,7 +34,7 @@ describe MerchantESolutions::BatchDetailRecord do
   end
 
   describe "credit cards" do
-    subject { MerchantESolutions::BatchDetailRecord.new([nil, nil, nil, nil, nil, nil, card_code]) }
+    subject { MerchantESolutions::DetailRecord.new([nil, nil, nil, nil, nil, nil, card_code]) }
 
     context "when the code is AM" do
       let(:card_code) { "AM" }

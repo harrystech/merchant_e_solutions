@@ -20,7 +20,7 @@ describe MerchantESolutions::SettlementDetailReport do
       report.records.size.should be > 0
 
       report.records.each do |record|
-        record.should be_a MerchantESolutions::SettlementDetailRecord
+        record.should be_a MerchantESolutions::DetailRecord
       end
     end
   end

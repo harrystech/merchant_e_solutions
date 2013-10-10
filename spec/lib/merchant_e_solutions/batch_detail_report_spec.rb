@@ -20,7 +20,7 @@ describe MerchantESolutions::BatchDetailReport do
       report.records.size.should be > 0
 
       report.records.each do |record|
-        record.should be_a MerchantESolutions::BatchDetailRecord
+        record.should be_a MerchantESolutions::DetailRecord
       end
     end
   end
