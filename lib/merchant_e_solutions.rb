@@ -14,12 +14,24 @@ module MerchantESolutions
       yield(Configuration)
     end
 
+    def batch_summary_report(options = {})
+      BatchSummaryReport.new(options)
+    end
+
+    def batch_detail_report(options = {})
+      BatchDetailReport.new(options)
+    end
+
     def settlement_summary_report(options = {})
       SettlementSummaryReport.new(options)
     end
 
     def settlement_detail_report(options = {})
       SettlementDetailReport.new(options)
+    end
+
+    def deposit_report(options = {})
+      DepositReport.new(options)
     end
   end
 
