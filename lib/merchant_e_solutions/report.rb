@@ -1,3 +1,5 @@
+require 'csv'
+
 module MerchantESolutions
   class Report
     attr_reader :records, :request
