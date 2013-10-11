@@ -5,7 +5,13 @@ module MerchantESolutions
     private
 
     def parse_date(date)
-      Date.strptime(date, "%m/%d/%Y") if date
+      if date && !date.empty?
+        Date.strptime(date, "%m/%d/%Y")
+      end
+    end
+
+    def parse_boolean(string)
+      ['y', 'yes'].include? string.downcase
     end
 
   end
