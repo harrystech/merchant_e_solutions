@@ -72,4 +72,18 @@ describe MerchantESolutions do
       MerchantESolutions.deposit_report(options)
     end
   end
+
+  describe ".adjustment_report" do
+    it "returns an Instance of MerchantESolution::SettlementReport" do
+      MerchantESolutions.adjustment_report.should be_a MerchantESolutions::AdjustmentReport
+    end
+
+    it "passes all options directly through to the new SettlementReport" do
+      options = {hash: "with", any: "keys", and: "values"}
+
+      MerchantESolutions::AdjustmentReport.should_receive(:new).with(options)
+
+      MerchantESolutions.adjustment_report(options)
+    end
+  end
 end

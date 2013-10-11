@@ -34,6 +34,10 @@ module MerchantESolutions
     def deposit_report(options = {})
       DepositReport.new(options)
     end
+
+    def adjustment_report(options = {})
+      AdjustmentReport.new(options)
+    end
   end
 
 end
