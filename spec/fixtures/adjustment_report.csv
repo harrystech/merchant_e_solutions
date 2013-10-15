@@ -1,3 +1,4 @@
-"Merchant Id","DBA Name","Control Number","Incoming Date","Card Number","Reference Number","Tran Date","Tran Amount","Auth Code","Adj Date","Adj Ref Num","Reason","First Time","Reason Code","CB Ref Num","Terminal ID"
-44,"Hamazon",224,08/11/2014,654321xxxxxx1234,'1176620,07/27/2014,15.0,,"08/10/2013-","1176538","Fraud - Card Not Present Transaction",Y,UA02,802061219,""
-44,"Hamazon",248,10/13/2014,123456xxxxxx4321,'16768007605410284,10/10/2014,40.0,03500P,"10/10/2013-","00001471124","No Cardholder Authorization",Y,4837,319290029,""
+"Merchant Id","DBA Name","Control Number","Incoming Date","Card Number","Reference Number","Tran Date","Tran Amount","Trident Tran ID","Purchase ID","Client Ref Num","Auth Code","Adj Date","Adj Ref Num","Reason","First Time","Reason Code","CB Ref Num","Terminal ID"
+44,"Hamazon",224,08/11/2014,654321xxxxxx1234,'1176620,07/27/2014,15.0,,null,"abcd","1234","08/10/2013-","1176538","Fraud - Card Not Present Transaction",Y,UA02,802061219,""
+44,"Hamazon",248,10/13/2014,123456xxxxxx4321,'16768007605410284,10/10/2014,40.0,03500P,null,"bcde","2345","10/10/2013-","00001471124","No Cardholder Authorization",Y,4837,319290029,""
+44,"Hamazon",307,05/17/2013,098765xxxxxx6789,'2514063000,03/28/2013,40.0,null,100013348,"",05581Z,"04/18/2013-","00001208748","Cardholder Does Not Recognize Transaction",Y,4863,1310601592,""

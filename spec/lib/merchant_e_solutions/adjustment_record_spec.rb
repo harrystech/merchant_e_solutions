@@ -4,8 +4,8 @@ describe MerchantESolutions::AdjustmentRecord do
   describe "#initialize" do
     subject { MerchantESolutions::AdjustmentRecord.new(csv_row) }
 
-    #"Merchant Id","DBA Name","Control Number","Incoming Date","Card Number","Reference Number","Tran Date","Tran Amount","Auth Code","Adj Date","Adj Ref Num","Reason","First Time","Reason Code","CB Ref Num","Terminal ID"
-    let(:csv_row) { [44, "Hamazon", 224, "08/11/2014", "654321xxxxxx1234", "'1176620", "07/27/2014", 15.0, 'aaa', "08/10/2013-", "1176538", "Fraud - Card Not Present Transaction", "Y", "UA02", 802061219, "b"] }
+    #"Merchant Id","DBA Name","Control Number","Incoming Date","Card Number","Reference Number","Tran Date","Tran Amount","Trident Tran ID", "Purchase ID", "Client Ref Num", "Auth Code","Adj Date","Adj Ref Num","Reason","First Time","Reason Code","CB Ref Num","Terminal ID"
+    let(:csv_row) { [44, "Hamazon", 224, "08/11/2014", "654321xxxxxx1234", "'1176620", "07/27/2014", 15.0, "null", "purchaseId123", "clientRefNum111", "aaa", "08/10/2013-", "1176538", "Fraud - Card Not Present Transaction", "Y", "UA02", 802061219, "b"] }
 
     its(:organization_id) { should == 44 }
     its(:organization_name) { should == "Hamazon" }
@@ -23,6 +23,9 @@ describe MerchantESolutions::AdjustmentRecord do
       subject.transaction_date.year.should == 2014
     end
     its(:transaction_amount) { should == 15.0 }
+    its(:trident_transaction_id) { should == "null" }
+    its(:purchase_id) { should == "purchaseId123" }
+    its(:client_reference_number) { should == "clientRefNum111" }
     its(:authorization_code) { 'aaa' }
     it "parses out the adjustment date" do
       subject.adjustment_date.day.should == 10
