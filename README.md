@@ -45,6 +45,34 @@ echo $MERCHANT_E_SOLUTIONS_USER_ID  # yourUserID
 echo $MERCHANT_E_SOLUTIONS_PASSWORD # yourPassword
 ```
 
+## A Note on Acquirer Reference Numbers (ARNs)
+
+The MeS detailed report APIs return an acquirer reference number for every
+transaction. Take a look at the MeS reporting API documentation under 'Links'
+for more.
+
+One issue we've seen is that the MeS API always returns reference numbers
+pre-pended with an apostrophe. Instead of `123456789`, we consistently see
+`'123456789`.
+
+The MeS docs are inconsistent in its examples, showing apostrophes pre-pended
+to some and none pre-pended to others. The MeS reporting front-end never shows
+apostrophes in reference numbers, and the apostrophe is never addressed in the
+documentation.
+
+Further, the reference number is documented as a 23-character field. The apostrophe
+consistently brings this field's length to 24 characters.
+
+This is probably sloppiness on MeS' end, so by default this library removes these
+apostrophes. If you want to keep the apostrophe for any reason -- personal preference,
+interfacing with legacy records that have them -- you can get the reference number
+unchanged from a record thusly:
+
+    reference_number = record.reference_number(:unchanged => true)
+
+## Links
+
+* [MeS Reporting API documentation](http://resources.merchante-solutions.com/display/TPGPUB/MeS+Payment+Gateway+Developer's+Guide#MeSPaymentGatewayDeveloper%27sGuide-5.ReportingOptions)
 
 ## Contributing
 
