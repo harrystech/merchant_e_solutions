@@ -4,7 +4,7 @@ module MerchantESolutions
   class DetailRecord < Record
 
     attr_reader :organization_id, :organization_name, :term_number, :batch_number, :batch_date,
-      :transaction_date, :card_code, :card_number, :reference_number, :purchase_id, :auth_code,
+      :transaction_date, :card_code, :card_number, :purchase_id, :auth_code,
       :entry_mode, :transaction_amount, :trident_transaction_id, :client_reference_number
 
     def initialize(row)
@@ -23,6 +23,11 @@ module MerchantESolutions
       @transaction_amount = row[12]
       @trident_transaction_id = row[13]
       @client_reference_number = row[14]
+    end
+
+    def reference_number(options={})
+      return @reference_number if options[:unchanged]
+      cleaned_reference_number
     end
 
     def credit_company
@@ -45,6 +50,17 @@ module MerchantESolutions
         "Debit"
       elsif ["MB", "VB"].include? card_code
         "Business"
+      end
+    end
+
+
+    private
+
+    def cleaned_reference_number
+      if @reference_number.start_with?("'")
+        @reference_number[1..-1]
+      else
+        @reference_number
       end
     end
   end

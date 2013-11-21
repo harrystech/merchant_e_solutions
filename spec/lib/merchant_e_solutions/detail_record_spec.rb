@@ -24,13 +24,39 @@ describe MerchantESolutions::DetailRecord do
     its("transaction_date.month") { should == 10 }
     its(:card_code) { should == "AM" }
     its(:card_number) { should == "000000xxxxxx1234" }
-    its(:reference_number) { "'0000213"}
-    its(:purchase_id) { "AAAAAAAAAAA0" }
-    its(:auth_code) { "AAAAAAAAAAA0" }
-    its(:entry_mode) { "AAAAAAAAAAA0" }
+    its(:reference_number) { should == "0000213"}
+    its(:purchase_id) { should == "AAAAAAAAAAA0" }
+    its(:auth_code) { should == "100000" }
+    its(:entry_mode) { should == "KEYED" }
     its(:transaction_amount) { should == 7.09 }
     its(:trident_transaction_id) { should == "T.T.ID" }
     its(:client_reference_number) { should == "clientRefNumber" }
+  end
+
+  describe "#reference_number" do
+    let(:reference_number) { "'0000213" }
+    let(:record) { MerchantESolutions::DetailRecord.new([nil, nil, nil, nil, nil, nil, nil, nil, reference_number])}
+
+    context "when no arguments are given" do
+      it "removes the pre-pended apostrophe from the reference number" do
+        record.reference_number.should == "0000213"
+      end
+    end
+
+    context "when the :unchanged option is set to true" do
+      it "returns the reference number verbatim, the pre-pended apostrophe intact" do
+        record.reference_number(:unchanged => true).should == "'0000213"
+      end
+    end
+
+    context "when the reference number doesn't contain an apostrophe" do
+      let (:reference_number) { "0000213" }
+
+      it "returns the reference number verbatim, regardless of the :unchanged argument" do
+        record.reference_number.should == "0000213"
+        record.reference_number(:unchanged => true).should == "0000213"
+      end
+    end
   end
 
   describe "credit cards" do
