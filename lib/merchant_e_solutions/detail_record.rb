@@ -30,6 +30,11 @@ module MerchantESolutions
       cleaned_reference_number
     end
 
+    def purchase_id(options={})
+      return @purchase_id if options[:unchanged]
+      cleaned_purchase_id
+    end
+
     def credit_company
       {
         "AM" => "American Express",
@@ -62,6 +67,10 @@ module MerchantESolutions
       else
         @reference_number
       end
+    end
+
+    def cleaned_purchase_id
+      @purchase_id.strip
     end
   end
 end
