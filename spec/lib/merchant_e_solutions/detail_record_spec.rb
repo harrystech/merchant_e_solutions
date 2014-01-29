@@ -59,6 +59,32 @@ describe MerchantESolutions::DetailRecord do
     end
   end
 
+  describe "#purchase_id" do
+    let(:purchase_id) { " AAA0    " }
+    let(:record) { MerchantESolutions::DetailRecord.new([nil, nil, nil, nil, nil, nil, nil, nil, nil, purchase_id])}
+
+    context "when no arguments are given" do
+      it "strips whitespace from the purchase id" do
+        record.purchase_id.should == "AAA0"
+      end
+    end
+
+    context "when the :unchanged options is set to true" do
+      it "returns the purchase id verbatim, whitespace intact" do
+        record.purchase_id(:unchanged => true).should == purchase_id
+      end
+    end
+
+    context "when the purchase id doesn't contains any spaces" do
+      let(:purchase_id) { "AAA0" }
+
+      it "returns the purchase id verbatim, regardless of the :unchanged argument" do
+        record.purchase_id.should == "AAA0"
+        record.purchase_id(:unchanged => true).should == "AAA0"
+      end
+    end
+  end
+
   describe "credit cards" do
     subject { MerchantESolutions::DetailRecord.new([nil, nil, nil, nil, nil, nil, card_code]) }
 
