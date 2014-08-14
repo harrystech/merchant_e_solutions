@@ -1,11 +1,14 @@
 require 'spec_helper'
 
 describe MerchantESolutions::DetailRecord do
+  let(:csv_header) { ["Merchant Id","DBA Name","Term Num","Batch Num","Batch Date","Tran Date","Card Type","Card Number","Reference","Purchase Id","Auth Code","Entry Mode","Tran Amount","Trident Tran Id","Client Ref Num"] }
+
   describe "#initialize" do
     subject { MerchantESolutions::DetailRecord.new(csv_row) }
 
     # "Merchant Id","DBA Name","Term Num","Batch Num","Batch Date","Tran Date","Card Type","Card Number","Reference","Purchase Id","Auth Code","Entry Mode","Tran Amount","Trident Tran Id","Client Ref Num"
-    let(:csv_row) { [42, "Hamazon", 1, 220, "10/07/2013", "10/06/2013", "AM", "000000xxxxxx1234", "'0000213", "AAAAAAAAAAA0", "100000", "KEYED", 7.09, "T.T.ID", "clientRefNumber"] }
+
+    let(:csv_row) { CSV::Row.new(csv_header, [42, "Hamazon", 1, 220, "10/07/2013", "10/06/2013", "AM", "000000xxxxxx1234", "'0000213", "AAAAAAAAAAA0", "100000", "KEYED", 7.09, "T.T.ID", "clientRefNumber"]) }
 
     its(:organization_id) { should == 42 }
     its(:organization_name) { should == "Hamazon" }
@@ -35,7 +38,8 @@ describe MerchantESolutions::DetailRecord do
 
   describe "#reference_number" do
     let(:reference_number) { "'0000213" }
-    let(:record) { MerchantESolutions::DetailRecord.new([nil, nil, nil, nil, nil, nil, nil, nil, reference_number])}
+    let(:csv_row) { CSV::Row.new(csv_header, [nil, nil, nil, nil, nil, nil, nil, nil, reference_number]) }
+    let(:record) { MerchantESolutions::DetailRecord.new(csv_row)}
 
     context "when no arguments are given" do
       it "removes the pre-pended apostrophe from the reference number" do
@@ -61,7 +65,8 @@ describe MerchantESolutions::DetailRecord do
 
   describe "#purchase_id" do
     let(:purchase_id) { " AAA0    " }
-    let(:record) { MerchantESolutions::DetailRecord.new([nil, nil, nil, nil, nil, nil, nil, nil, nil, purchase_id])}
+    let(:csv_row) { CSV::Row.new(csv_header, [nil, nil, nil, nil, nil, nil, nil, nil, nil, purchase_id]) }
+    let(:record) { MerchantESolutions::DetailRecord.new(csv_row)}
 
     context "when no arguments are given" do
       it "strips whitespace from the purchase id" do
@@ -86,7 +91,8 @@ describe MerchantESolutions::DetailRecord do
   end
 
   describe "credit cards" do
-    subject { MerchantESolutions::DetailRecord.new([nil, nil, nil, nil, nil, nil, card_code]) }
+    let(:csv_row) { CSV::Row.new(csv_header, [nil, nil, nil, nil, nil, nil, card_code]) }
+    subject { MerchantESolutions::DetailRecord.new(csv_row) }
 
     context "when the code is AM" do
       let(:card_code) { "AM" }

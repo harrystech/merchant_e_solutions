@@ -8,21 +8,21 @@ module MerchantESolutions
       :entry_mode, :transaction_amount, :trident_transaction_id, :client_reference_number
 
     def initialize(row)
-      @organization_id = row[0]
-      @organization_name = row[1]
-      @term_number = row[2]
-      @batch_number = row[3]
-      @batch_date = parse_date(row[4])
-      @transaction_date = parse_date(row[5])
-      @card_code = row[6]
-      @card_number = row[7]
-      @reference_number = row[8]
-      @purchase_id = row[9]
-      @auth_code = row[10]
-      @entry_mode = row[11]
-      @transaction_amount = row[12]
-      @trident_transaction_id = row[13]
-      @client_reference_number = row[14]
+      @organization_id = row["Merchant Id"]
+      @organization_name = row["DBA Name"]
+      @term_number = row["Term Num"]
+      @batch_number = row["Batch Num"]
+      @batch_date = parse_date(row["Batch Date"])
+      @transaction_date = parse_date(row["Tran Date"])
+      @card_code = row["Card Type"]
+      @card_number = row["Card Number"]
+      @reference_number = row["Reference"]
+      @purchase_id = row["Purchase Id"]
+      @auth_code = row["Auth Code"]
+      @entry_mode = row["Entry Mode"]
+      @transaction_amount = row["Tran Amount"]
+      @trident_transaction_id = row["Trident Tran Id"]
+      @client_reference_number = row["Client Ref Num"]
     end
 
     def reference_number(options={})
